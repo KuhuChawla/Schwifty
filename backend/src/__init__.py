@@ -13,4 +13,7 @@ def create_app():
     from src.auth import auth_blueprint
     app.register_blueprint(auth_blueprint)
 
+    from src.txn import txn_blueprint
+    app.register_blueprint(txn_blueprint, url_prefix="/transaction")
+
     return app

@@ -25,6 +25,23 @@ def signup():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
+@auth_blueprint.route("/register/merchant", methods=["POST"])
+def signup_merchant():
+    data = request.get_json()
+    try:
+        db.session.add(models.Merchant(
+            id=str(uuid.uuid4()),
+            name=data["name"],
+            email=data["email"],
+            password=generate_password_hash(data["password"], method="sha256"),
+            phone=data["phone"],
+            address=data["address"]
+        ))
+        db.session.commit()
+        return jsonify({"success": "at creation of account"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
 @auth_blueprint.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
@@ -45,7 +62,7 @@ def login():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-def authorize(f):
+def authorize_user(f):
     @wraps(f)
     def find_user(*args, **kwargs):
         if not "Authorization" in request.headers:
@@ -59,8 +76,22 @@ def authorize(f):
         return f(u, *args, **kwargs)
     return find_user
 
+def authorize_merchant(f):
+    @wraps(f)
+    def find_user(*args, **kwargs):
+        if not "Authorization" in request.headers:
+            return jsonify({"error": "Authorization header missing"}), 401
+        token = request.headers["Authorization"].replace("Bearer ", "")
+        try:
+            data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+            u = models.Merchant.query.filter_by(id=data["id"]).first()
+        except:
+            return jsonify({"error": "wrong token"}), 401
+        return f(u, *args, **kwargs)
+    return find_user
+
 @auth_blueprint.route("/test/<int:i>", methods=["GET", "POST"])
-@authorize
+@authorize_user
 def test(user, i):
     '''example endpoint to test auth'''
     return jsonify({"success": "Hi " + user.name + ", you passed " + str(i)})
