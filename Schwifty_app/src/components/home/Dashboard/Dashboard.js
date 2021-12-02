@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import styles from './style';
 import Card from '../Card/Card';
 import { Ionicons } from '@expo/vector-icons';
+import HorizontalList from '../HorizontalList/HorizontalList';
 
 const Dashboard = () => {
 
@@ -58,7 +59,9 @@ const Dashboard = () => {
                 keyExtractor={(item) => item.key}
                 data={details}
                 renderItem={({ item }) => (
-                    <Text style={styles.horizontalElement}>{ item.name }</Text>
+                    <View key={item.key}>
+                        <HorizontalList item={item} />
+                    </View>
                 )}
             />
         </View>
