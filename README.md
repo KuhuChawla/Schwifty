@@ -1,0 +1,2 @@
+# Schwifty
+## FTX Hackathon
