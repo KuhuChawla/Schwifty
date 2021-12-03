@@ -22,8 +22,6 @@ const HomeStackScreen = ({ deleteJWT }) => {
             }}>
                 {() => <Profile deleteJWT={deleteJWT} />}
             </HomeStack.Screen>
-<<<<<<< Updated upstream
-=======
             <HomeStack.Screen name="Schwifty Score" options={{
                 // headerStyle: {
                 //     backgroundColor: '#2a2b4d',
@@ -35,7 +33,6 @@ const HomeStackScreen = ({ deleteJWT }) => {
                     fontWeight: 'bold',
                   },
             }} component={SchwiftyScorePage} />
->>>>>>> Stashed changes
         </HomeStack.Navigator>
     )
 }
