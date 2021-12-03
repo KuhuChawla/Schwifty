@@ -16,6 +16,18 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 18,
         color: 'red'
+    },
+    toggle: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+    },
+    toggleText: {
+        fontSize: 20,
+        color: '#000',
+        fontWeight: 'bold',
+        paddingEnd: 10,
     }
 });
 

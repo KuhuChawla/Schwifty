@@ -8,8 +8,11 @@ import axios from 'axios';
 import styles from './styles';
 import deviceStorage from '../../services/deviceStorage';
 import { Platform } from 'react-native';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const url = Platform.OS === "android" ? 'http://10.0.2.2:5000/login' : 'http://127.0.0.1:5000/login';
+const merchantUrl = Platform.OS === "android" ? 'http://10.0.2.2:5000/loginMerchant' : 'http://127.0.0.1:5000/loginMerchant';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -17,12 +20,21 @@ class Login extends Component {
       email: '',
       password: '',
       error: '',
+      isMerchant: false,
       loading: false
     };
 
     this.loginUser = this.loginUser.bind(this);
     this.onLoginFail = this.onLoginFail.bind(this);
+    this.toggleSwitch = this.toggleSwitch.bind(this);
+    this.loginMerchant = this.loginMerchant.bind(this);
   }
+
+  toggleSwitch() {
+		this.setState({
+			isMerchant: !this.state.isMerchant,
+		});
+	}
 
   loginUser() {
     const { email, password, password_confirmation } = this.state;
@@ -31,6 +43,26 @@ class Login extends Component {
 
     // NOTE Post to HTTPS only in production
     axios.post(url, {
+      email: email,
+      password: password
+    })
+      .then((response) => {
+        deviceStorage.saveKey("id_token", response.data.token);
+        this.props.newJWT(response.data.token);
+      })
+      .catch((error) => {
+        console.log("error!!",error);
+        this.onLoginFail();
+      });
+  }
+
+  loginMerchant() {
+    const { email, password, password_confirmation } = this.state;
+
+    this.setState({ error: '', loading: true });
+
+    // NOTE Post to HTTPS only in production
+    axios.post(merchantUrl, {
       email: email,
       password: password
     })
@@ -53,9 +85,20 @@ class Login extends Component {
 
   render() {
     const { email, password, error, loading } = this.state;
-
     return (
       <Fragment>
+        <View style={styles.toggle}>
+						<Text style={styles.toggleText}>Are you a merchant? </Text>
+						<BouncyCheckbox
+							size={25}
+							fillColor="mediumpurple"
+							unfillColor="#FFFFFF"
+							disableText
+							iconStyle={{ borderColor: "rebeccapurple" }}
+							textStyle={styles.toggleText}
+							onPress={() => this.toggleSwitch()}
+						/>
+					</View>
         <View style={styles.form}>
           <View style={styles.section}>
             <Input
@@ -81,7 +124,7 @@ class Login extends Component {
           </Text>
 
           {!loading ?
-            <Button onPress={this.loginUser}>
+            <Button onPress={this.state.isMerchant? this.loginMerchant :this.loginUser}>
               Login
             </Button>
             :
