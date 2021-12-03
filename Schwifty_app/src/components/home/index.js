@@ -11,7 +11,7 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.homeTopbar}>
             <Topbar navigation={navigation}/>
-            <Dashboard />
+            <Dashboard navigation={navigation}/>
         </View>
     );
 }

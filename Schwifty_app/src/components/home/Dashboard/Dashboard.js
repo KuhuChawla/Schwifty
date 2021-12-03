@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import styles from './style';
 import Card from '../Card/Card';
 import { Ionicons } from '@expo/vector-icons';
 import HorizontalList from '../HorizontalList/HorizontalList';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
 
     const details = [
         { name: 'Luisi', key: '1' },
@@ -41,11 +43,13 @@ const Dashboard = () => {
                     </View>
                 </View>
             </Card>
-            <Card>
-                <View style={styles.card3}>
-                    <Text style={styles.card3Content}>This is Card 3</Text>
-                </View>
-            </Card>
+            <TouchableOpacity onPress={() => navigation.navigate('Schwifty Score')}>
+                <Card>
+                    <View style={styles.card3}>
+                        <Text style={styles.card3Content}>Schwifty Score</Text>
+                    </View>
+                </Card>
+            </TouchableOpacity>
             <View>
                 <Text style={styles.cashAndCheck}>
                     Cash &#38; Checking
