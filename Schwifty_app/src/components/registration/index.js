@@ -22,7 +22,8 @@ class Registration extends Component {
             address: '',
             error: '',
             success: false,
-            loading: false
+            loading: false,
+            isMerchant: false
         }
         this.registerUser = this.registerUser.bind(this);
     }
