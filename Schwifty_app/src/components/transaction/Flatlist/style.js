@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     text: {
         color: '#fff',
-        fontWeight: '700',
+        fontWeight: 'bold',
         fontSize: 20
     },
     container: {

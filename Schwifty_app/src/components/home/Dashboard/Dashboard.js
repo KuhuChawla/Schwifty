@@ -20,30 +20,30 @@ const Dashboard = () => {
         <View style={styles.dashboard}>
             <Card>
                 <View style={styles.card1}>
-                    <Text style={styles.card1Heading}>Available Balance</Text>
-                    <Text style={styles.card1Balance}>Rs. 2000</Text>
+                    <Text style={styles.card1Heading}>Pending Balance</Text>
+                    <Text style={styles.card1Balance}>&#8377; 2000</Text>
                     <Text style={styles.card1SeeDetails}>See Details</Text>
                 </View>
             </Card>
             <Card>
                 <View style={styles.card2}>
-                    <View>
-                        <Ionicons name="md-checkmark-circle" size={33} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>Top Up</Text>
+                    <View style={styles.threeIconsSingleContainer}>
+                        <Ionicons name="menu" size={33} color="white" style={styles.threeIcons} />
+                        <Text style={styles.threeIconsText}>History</Text>
                     </View>
-                    <View>
-                        <Ionicons name="md-checkmark-circle" size={33} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>Top Up</Text>
+                    <View style={styles.threeIconsSingleContainer}>
+                        <Ionicons name="arrow-redo-circle-outline" size={34} color="white" style={styles.threeIcons} />
+                        <Text style={styles.threeIconsText}>Pay</Text>
                     </View>
-                    <View>
-                        <Ionicons name="md-checkmark-circle" size={33} color="white" style={styles.threeIcons} />
+                    <View style={styles.threeIconsSingleContainer}>
+                    <Ionicons name="menu" size={33} color="white" style={styles.threeIcons} />
                         <Text style={styles.threeIconsText}>Top Up</Text>
                     </View>
                 </View>
             </Card>
             <Card>
                 <View style={styles.card3}>
-                    <Text style={styles.card3Content}>This is Card 3</Text>
+                    <Text style={styles.card3Content}>Your Credit Score: 14</Text>
                 </View>
             </Card>
             <View>
