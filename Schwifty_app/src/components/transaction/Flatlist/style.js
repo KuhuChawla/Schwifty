@@ -3,7 +3,7 @@ const styles = StyleSheet.create({
     text: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 16
     },
     container: {
         flex: 1,

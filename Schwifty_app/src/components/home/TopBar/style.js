@@ -14,12 +14,12 @@ export default StyleSheet.create({
     topLeft: {
         padding: 5,
         paddingLeft: 20,
-        color: '#d2d2d2'
+        color: '#2a2b4d'
     },
     bottomLeft: {
         padding: 5,
         paddingLeft: 20,
-        color: 'white',
+        color: '#2a2b4d',
         fontWeight: 'bold',
         fontSize: 22,
     },

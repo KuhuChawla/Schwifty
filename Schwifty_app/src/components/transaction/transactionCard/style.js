@@ -6,13 +6,14 @@ const styles = StyleSheet.create({
       height: 70,
     borderRadius: 10,
     elevation: 3,
-    backgroundColor: '#55599e',
+    backgroundColor: '#2a2b4d',
     shadowOffset: { width: 1, height: 1 },
     shadowColor: '#333',
     shadowOpacity: 0.3,
     shadowRadius: 2,
     marginHorizontal: 4,
-    marginVertical: 6,
+    marginVertical: 4,
+    
   },
   cardContent: {
     marginHorizontal: 18,

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     elevation: 6,
-    backgroundColor: '#55599e',
+    backgroundColor: '#2a2b4d',
     shadowOffset: { width: 4, height: 4 },
     shadowColor: 'black',
     shadowOpacity: 0.3,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginVertical: 10,
     justifyContent: 'center'
-  }
+}
 });
 
 

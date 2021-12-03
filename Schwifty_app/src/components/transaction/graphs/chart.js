@@ -26,24 +26,24 @@ const Charts = () => {
                 yAxisInterval={1}
                 withHorizontalLabels={false}
                 chartConfig={{
-                    backgroundGradientFrom: "#1E2923",
+                    backgroundGradientFrom: "#fff",
                     backgroundGradientFromOpacity: 0,
-                    backgroundGradientTo: "#08130D",
+                    backgroundGradientTo: "#fff",
                     backgroundGradientToOpacity: 0.5,
-                    color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,
+                    color: (opacity = 1) => `rgba(42, 43, 77, ${opacity})`,
                     strokeWidth: 2, // optional, default 3
                     barPercentage: 100,
                     useShadowColorFromDataset: false, // optional
 
 
-                    labelColor: (opacity = 1) => `rgba(98,112,197, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(42, 43, 77, ${opacity})`,
                     style: {
                         borderRadius: 0
                     },
                     propsForDots: {
                         r: "6",
                         strokeWidth: "0",
-                        stroke: "#fbfbfb"
+                        stroke: "#2a2b4d"
                     }
                 }}
                 bezier

@@ -10,8 +10,8 @@ const Payment = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ alignItems: 'center' }}>
-                <Text style={{ fontSize: 40, paddingBottom: 50, color: '#fff', fontWeight: '700' }}> $1200 </Text>
-                <Text style={{ fontSize: 40, paddingBottom: 50, color: '#fff', fontWeight: '700' }}> {txnID} </Text>
+                <Text style={{ fontSize: 40, paddingBottom: 50, color: '#2a2b4d', fontWeight: '700' }}> $1200 </Text>
+                <Text style={{ fontSize: 40, paddingBottom: 50, color: '#2a2b4d', fontWeight: '700' }}> {txnID} </Text>
                 <Image source={require('./payment-method.png')}
                     style={{ width: icon_size, height: icon_size, borderRadius: icon_size }} />
                 <AppB />
@@ -23,7 +23,7 @@ const Payment = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2a2b4d',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },

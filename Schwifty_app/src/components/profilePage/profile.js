@@ -35,7 +35,7 @@ const Profile = ({ deleteJWT, jwt }) => {
 			justifyContent: 'center',
 		}}>{
 				isLoading ? <Loading /> : <>
-					<Image source={require('./icon.png')}
+					<Image source={require('../../../assets/Profile.png')}
 						style={{ width: icon_size, height: icon_size, borderRadius: icon_size }} />
 					<Text style={{ paddingTop: 20, paddingBottom: 20, color: '#fff', fontSize: 20 }} >{data.email}</Text>
 					<ProfileCard >
@@ -60,6 +60,5 @@ const Profile = ({ deleteJWT, jwt }) => {
 
 		</View>
 	);
-};
 
 export default Profile;

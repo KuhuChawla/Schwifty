@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, Text, TouchableWithoutFeedback, View,Image } from 'react-native';
 import styles from "./style"
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +15,8 @@ const Topbar = ({ navigation }) => {
             <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
                 <View style={styles.right}>
                     {/* <Text style={styles.right}><Ionicons name="person" size={32} color="green" /></Text> */}
-                    <Ionicons name="md-checkmark-circle" size={60} color="white" />
+                    <Image source={require('../../../../assets/Profile.png')}
+                    style = {{width:55,height:55}}/>
                 </View>
             </TouchableWithoutFeedback>
         </View>

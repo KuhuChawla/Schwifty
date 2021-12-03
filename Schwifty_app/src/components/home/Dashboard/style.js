@@ -8,6 +8,7 @@ export default StyleSheet.create({
     },
     card1: {
         padding: 5,
+        
         color: 'white',
     },
     card1Heading: {
@@ -45,13 +46,19 @@ export default StyleSheet.create({
     },
     card3: {
         color: 'white',
+        paddingTop:10,
+        paddingBottom:10,
+        alignItems: 'center'
+        
     },
     card3Content: {
         color: 'white',
         padding: 5,
+        fontSize:18,
+        fontWeight:'bold'
     },
     cashAndCheck: {
-        color: 'white',
+        color: '#2a2b4d',
         fontSize: 22,
         fontWeight: 'bold',
         padding: 20

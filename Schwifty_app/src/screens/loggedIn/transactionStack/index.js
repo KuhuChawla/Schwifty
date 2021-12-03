@@ -9,7 +9,17 @@ const TransactionStackScreen = () => {
     return (
         <TransactionStack.Navigator>
             <TransactionStack.Screen name="TransactionHistory" component={TransHistory} options={{headerShown: false}}/>
-            <TransactionStack.Screen name="PaymentPage" component={Payment}/>
+            <TransactionStack.Screen name="PaymentPage" options={{
+                headerStyle: {
+                    backgroundColor: '#fff',
+                    elevation: 0,
+                    shadowOpacity: 0
+                },
+                headerTintColor: '#2a2b4d',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                  },
+            }} component={Payment}/>
         </TransactionStack.Navigator>
     )
 }
