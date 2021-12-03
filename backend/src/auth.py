@@ -56,7 +56,7 @@ def login():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": token})
+                return jsonify({"token": token.decode()})
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:
