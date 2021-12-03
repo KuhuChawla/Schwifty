@@ -45,12 +45,12 @@ const TransactionRecords = ({ navigation }) => {
                     style={{ width: icon_size, height: icon_size, borderRadius: icon_size }} />
                   <View style={{ justifyContent: 'center', paddingLeft: 10, flexDirection: 'column' }}>
                     <Text style={styles.text}>{item.key}</Text>
-                    <Text style={{ color: '#d2d2d2', paddingTop: 4 }}>30/11/21</Text>
+                    <Text style={{ color: '#d2d2d2', paddingTop: 4, fontSize: 13 }}>30/11/21</Text>
                   </View>
                 </View>
                 <View style={{ alignItems: 'center' }}>
                   <Text style={styles.text}>&#8377; {"1200"}</Text>
-                  <Text style={{ color: '#d2d2d2', paddingTop: 4 }}>  11:42 pm</Text>
+                  <Text style={{ color: '#d2d2d2', paddingTop: 4, fontSize: 13 }}>  11:42 pm</Text>
                 </View>
               </View>
             </Card></TouchableHighlight>

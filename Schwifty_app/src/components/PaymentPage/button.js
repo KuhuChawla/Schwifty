@@ -12,7 +12,7 @@ const AppButton = ({ onPress, title }) => (
 const AppB = () => {
   return (
     <View style={styles.screenContainer}>
-      <AppButton title="PAY NOW" size="sm" backgroundColor="#007bff" />
+      <AppButton title="PAY NOW" size="sm" backgroundColor='#2a2b4d' />
     </View>
   );
 };
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   appButtonContainer: {
     elevation: 8,
-    backgroundColor: "#6a82f6",
+    backgroundColor: "#2a2b4d",
     borderRadius: 10,
     paddingVertical: 20,
     paddingHorizontal: 30

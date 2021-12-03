@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 const deviceWidth = Math.round(Dimensions.get('window').width);
+const deviceheight = Math.round(Dimensions.get('window').height);
 
 export default StyleSheet.create({
     horizontalCard: {
@@ -12,6 +13,7 @@ export default StyleSheet.create({
         shadowRadius: 2,
         marginLeft: 15,
         minWidth: deviceWidth - 230,
+        minHeight: deviceheight -680
     },
     horizontalListName: {
         marginTop: 10,

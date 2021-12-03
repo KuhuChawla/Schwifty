@@ -9,18 +9,15 @@ const Profile = ({deleteJWT}) => {
     return (
         <View style={{
             flex: 1,
-            backgroundColor: '#2a2b4d',
+            backgroundColor: '#fff',
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <Image source={require('./icon.png')}
-                style={{ width: icon_size, height: icon_size, borderRadius: icon_size }} />
-            <Text style={{ paddingTop: 20, paddingBottom: 20, color: '#fff', fontSize: 20 }} >Email Id</Text>
+            <Image source={require('../../../assets/Profile.png')}
+                    style = {{width:icon_size,height:icon_size}}/>
+            <Text style={{ paddingTop: 20, paddingBottom: 20, color: '#2a2b4d', fontSize: 20 }} >Email Id</Text>
             <ProfileCard >
-                <Text style={{ color: '#fff', fontSize: 16 }}>First Name</Text>
-            </ProfileCard>
-            <ProfileCard >
-                <Text style={{ color: '#fff', fontSize: 16 }}>Last Name</Text>
+                <Text style={{ color: '#fff', fontSize: 16 }}>Name</Text>
             </ProfileCard>
             <ProfileCard >
                 <Text style={{ color: '#fff', fontSize: 16 }}>Mobile Number</Text>
@@ -34,7 +31,7 @@ const Profile = ({deleteJWT}) => {
                     height: 50,
                     borderRadius: 10,
                     elevation: 6,
-                    backgroundColor: '#55599e',
+                    backgroundColor: '#2a2b4d',
                     shadowOffset: { width: 4, height: 4 },
                     shadowColor: 'black',
                     shadowOpacity: 0.3,

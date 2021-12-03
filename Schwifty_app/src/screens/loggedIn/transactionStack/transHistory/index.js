@@ -10,14 +10,14 @@ const TransHistory = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{
-          height: deviceHeight - 680,
+          height: deviceHeight - 790,
           width: '100%',
-          backgroundColor: '#2a2b4d',
+          backgroundColor: '#fff',
           justifyContent: 'center',
           alignItems: 'center'
         }}>
         <Text style={{
-          color: 'white',
+          color: '#2a2b4d',
           // padding: 10,
           fontSize: 20,
           // marginTop: 10,
@@ -35,7 +35,7 @@ const TransHistory = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2a2b4d',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
