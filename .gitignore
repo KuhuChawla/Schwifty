@@ -1,0 +1,5 @@
+*.env
+*.swp
+*.db
+*/__pycache__/*
+*.py[cod]
