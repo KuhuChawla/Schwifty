@@ -2,11 +2,11 @@ import { Dimensions, StyleSheet } from "react-native";
 const deviceWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
   card: {
-      width: deviceWidth - 50,
+      width: deviceWidth - 30,
       height: 70,
-    borderRadius: 6,
+    borderRadius: 10,
     elevation: 3,
-    backgroundColor: '#353763',
+    backgroundColor: '#55599e',
     shadowOffset: { width: 1, height: 1 },
     shadowColor: '#333',
     shadowOpacity: 0.3,

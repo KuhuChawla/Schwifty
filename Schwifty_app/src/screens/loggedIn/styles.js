@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
 		AndroidSafeArea: {
 			flex: 1,
-			backgroundColor: "white",
+			backgroundColor: "#2a2b4d",
 			paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
 		}
 });

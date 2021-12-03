@@ -2,8 +2,8 @@ import { Dimensions, StyleSheet } from "react-native";
 const deviceWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
   card: {
-      width: deviceWidth - 50,
-      height: 50,
+    width: deviceWidth - 50,
+    height: 50,
     borderRadius: 6,
     elevation: 3,
     backgroundColor: '#353763',
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     marginHorizontal: 4,
     marginVertical: 10,
-    marginTop:10
+    justifyContent: 'center'
   },
   cardContent: {
     marginHorizontal: 18,
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22
-   },
-   item: {
-     padding: 10,
-     fontSize: 18,
-     height: 44,
-   },
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
 });
 
 

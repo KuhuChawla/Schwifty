@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const deviceHeight = Math.round(Dimensions.get('window').height);
 
 export default StyleSheet.create({
     container: {
@@ -8,8 +9,9 @@ export default StyleSheet.create({
         color: 'white',
     },
     navTopbar: {
-        height: '15%',
-        backgroundColor: '#111233',
+        // height: '12%',
+        height: deviceHeight - 680,
+        backgroundColor: '#2a2b4d',
         justifyContent: 'center',
         alignItems: 'center',
         // borderBottomLeftRadius: 15,
@@ -19,6 +21,7 @@ export default StyleSheet.create({
     navTopbarContent: {
         color: 'white',
         fontSize: 20,
-        marginBottom: -35,
+        // marginBottom: -35,
+        fontWeight: 'bold',
     }
 });
