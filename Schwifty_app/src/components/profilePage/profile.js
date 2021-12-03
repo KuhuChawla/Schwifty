@@ -30,14 +30,14 @@ const Profile = ({ deleteJWT, jwt }) => {
 	return (
 		<View style={{
 			flex: 1,
-			backgroundColor: '#2a2b4d',
+			backgroundColor: '#fff',
 			alignItems: 'center',
 			justifyContent: 'center',
 		}}>{
 				isLoading ? <Loading /> : <>
 					<Image source={require('../../../assets/Profile.png')}
 						style={{ width: icon_size, height: icon_size, borderRadius: icon_size }} />
-					<Text style={{ paddingTop: 20, paddingBottom: 20, color: '#fff', fontSize: 20 }} >{data.email}</Text>
+					<Text style={{ paddingTop: 20, paddingBottom: 20, color: '#2a2b4d', fontSize: 20 }} >{data.email}</Text>
 					<ProfileCard >
 						<Text style={{ color: '#fff', fontSize: 16 }}>{data.name}</Text>
 					</ProfileCard>
@@ -60,5 +60,5 @@ const Profile = ({ deleteJWT, jwt }) => {
 
 		</View>
 	);
-
+}
 export default Profile;
