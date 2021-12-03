@@ -3,11 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import styles from "./style"
 import Topbar from './TopBar/TopBar';
 import Dashboard from './Dashboard/Dashboard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Home = () => {
+
+const Home = ({ navigation }) => {
     return (
         <View style={styles.homeTopbar}>
-            <Topbar />
+            <Topbar navigation={navigation}/>
             <Dashboard />
         </View>
     );

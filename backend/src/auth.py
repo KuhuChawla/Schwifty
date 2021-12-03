@@ -37,7 +37,7 @@ def login():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": token.decode()})
+                return jsonify({"token": token})
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:
@@ -45,7 +45,7 @@ def login():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-def authorize(f):
+def auth(f):
     @wraps(f)
     def find_user(*args, **kwargs):
         if not "Authorization" in request.headers:
@@ -60,7 +60,8 @@ def authorize(f):
     return find_user
 
 @auth_blueprint.route("/test/<int:i>", methods=["GET", "POST"])
-@authorize
+@auth
 def test(user, i):
     '''example endpoint to test auth'''
     return jsonify({"success": "Hi " + user.name + ", you passed " + str(i)})
+

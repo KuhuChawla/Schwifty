@@ -39,7 +39,7 @@ class Login extends Component {
         this.props.newJWT(response.data.token);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("error!!",error);
         this.onLoginFail();
       });
   }
