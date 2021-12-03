@@ -8,3 +8,5 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI") or \
     'sqlite:///' + os.path.join(basedir, "data.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    KEY_ID = os.environ.get('KEY_ID') or "BRUHBRUHBRUHBRUHBRUH"
+    KEY_SECRET = os.environ.get('KEY_SECRET') or "BRUHBRUHBRUHBRUHBRUH"

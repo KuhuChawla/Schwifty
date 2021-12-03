@@ -38,6 +38,7 @@ class Ledger(db.Model):
     user_two = db.Column(db.String(37), primary_key=True) #customer :C
     balance = db.Column(db.Integer, default=0)
     confirm = db.Column(db.Boolean, default=False)
+    details = db.Column(db.String(300), default="")
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
 class Transactions(db.Model):
@@ -45,6 +46,7 @@ class Transactions(db.Model):
     id = db.Column(db.String(37), primary_key=True)
     user_one = db.Column(db.String(37), primary_key=True)
     user_two = db.Column(db.String(37), primary_key=True)
+    ledger_id = db.Column(db.String(37), primary_key=True) #which ledger does this transaction refer to?
     amount = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     isPaid = db.Column(db.Boolean, default=False)

@@ -62,6 +62,26 @@ def login():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
+@auth_blueprint.route("/login/merchant", methods=["POST"])
+def login_merchant():
+    data = request.get_json()
+    try:
+        u = models.Merchant.query.filter_by(email=data["email"]).first()
+        if u:
+            if check_password_hash(u.password, data["password"]):
+                token = jwt.encode(
+                        {"id": u.id, "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)},
+                        current_app.config["SECRET_KEY"],
+                        "HS256"
+                        )
+                return jsonify({"token": token.decode()})
+            else:
+                return jsonify({"error": "wrong password"}), 401
+        else:
+            return jsonify({"error": "no such user with such email"}), 401
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
 def authorize_user(f):
     @wraps(f)
     def find_user(*args, **kwargs):
