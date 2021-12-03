@@ -48,10 +48,15 @@ export default class LoggedIn extends Component {
               // You can return any component that you like here!
               return <Ionicons name={iconName} size={size} color={color} />;
             },
-            tabBarActiveTintColor: 'tomato',
-            tabBarInactiveTintColor: 'gray',
+            tabBarActiveTintColor: '#d9d9d9',
+            tabBarInactiveTintColor: '#d9d9d9',
             headerShown: false
-          })}>
+          })} tabBarOptions={{
+            // activeTintColor: 'pink',
+            // inactiveTintColor: 'pink',
+            activeBackgroundColor: '#272847',
+            inactiveBackgroundColor: '#171826',
+         }}>
             <Tab.Screen name="Home">
               {() => <HomeStackScreen deleteJWT={this.props.deleteJWT} />}
             </Tab.Screen>

@@ -25,8 +25,9 @@ def signup():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-@auth_blueprint.route("/register/merchant", methods=["POST"])
-def signup_merchant():
+
+@auth_blueprint.route("/registerMerchant", methods=["POST"])
+def signupMerchant():
     data = request.get_json()
     try:
         db.session.add(models.Merchant(
@@ -34,6 +35,7 @@ def signup_merchant():
             name=data["name"],
             email=data["email"],
             password=generate_password_hash(data["password"], method="sha256"),
+            bname=data["bname"],
             phone=data["phone"],
             address=data["address"]
         ))
@@ -54,7 +56,7 @@ def login():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": token.decode()})
+                return jsonify({"token": token})
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:
@@ -62,8 +64,8 @@ def login():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-@auth_blueprint.route("/login/merchant", methods=["POST"])
-def login_merchant():
+@auth_blueprint.route("/loginMerchant", methods=["POST"])
+def loginMerchant():
     data = request.get_json()
     try:
         u = models.Merchant.query.filter_by(email=data["email"]).first()
@@ -115,3 +117,4 @@ def authorize_merchant(f):
 def test(user, i):
     '''example endpoint to test auth'''
     return jsonify({"success": "Hi " + user.name + ", you passed " + str(i)})
+
