@@ -1,42 +1,21 @@
-import React, { Component } from 'react';
-import Loading from './src/components/common/loading';
-import Auth from './src/screens/auth';
-import LoggedIn from './src/screens/loggedIn';
-import deviceStorage from './src/services/deviceStorage';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Home from "./src/components/home";
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      jwt: '',
-      loading: true
-    }
-
-    this.newJWT = this.newJWT.bind(this);
-    this.deleteJWT = deviceStorage.deleteJWT.bind(this);
-    this.loadJWT = deviceStorage.loadJWT.bind(this);
-    this.loadJWT();
-  }
-
-  render() {
-    if (this.state.loading) {
-      return (
-        <Loading size={'large'} />
-       );
-    } else if (!this.state.jwt) {
-      return (
-        <Auth newJWT={this.newJWT} />
-      );
-    } else if (this.state.jwt) {
-      return (
-        <LoggedIn jwt={this.state.jwt} deleteJWT={this.deleteJWT} />
-      );
-    }
-  }
-
-  newJWT(jwt){
-    this.setState({
-      jwt: jwt
-    });
-  }
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Home />
+      <StatusBar style="auto" />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#2a2b4d',
+    alignItems: 'center',
+  },
+});
