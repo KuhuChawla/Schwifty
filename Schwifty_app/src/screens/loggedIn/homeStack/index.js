@@ -6,7 +6,7 @@ import SchwiftyScorePage from "../../../components/schwiftyScore";
 
 const HomeStack = createNativeStackNavigator();
 
-const HomeStackScreen = ({ deleteJWT }) => {
+const HomeStackScreen = ({ deleteJWT, jwt }) => {
     return (
         <HomeStack.Navigator>
             <HomeStack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
@@ -21,7 +21,7 @@ const HomeStackScreen = ({ deleteJWT }) => {
                     fontWeight: 'bold',
                   },
             }}>
-                {() => <Profile deleteJWT={deleteJWT} />}
+                {() => <Profile deleteJWT={deleteJWT} jwt={jwt}/>}
             </HomeStack.Screen>
             <HomeStack.Screen name="Schwifty Score" component={SchwiftyScorePage} />
         </HomeStack.Navigator>

@@ -18,7 +18,8 @@ export default class LoggedIn extends Component {
     this.state = {
       loading: true,
       email: '',
-      error: ''
+      error: '',
+      user_id: '',
     }
   }
 
@@ -58,7 +59,7 @@ export default class LoggedIn extends Component {
             inactiveBackgroundColor: '#171826',
          }}>
             <Tab.Screen name="Home">
-              {() => <HomeStackScreen deleteJWT={this.props.deleteJWT} />}
+              {() => <HomeStackScreen deleteJWT={this.props.deleteJWT} jwt={this.props.jwt}/>}
             </Tab.Screen>
             <Tab.Screen name="Transactions" component={TransactionStackScreen} />
             <Tab.Screen name="Notifications" component={NotificationStackScreen} />

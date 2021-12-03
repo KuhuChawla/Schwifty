@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 const deviceWidth = Math.round(Dimensions.get('window').width);
+
 const styles = StyleSheet.create({
   card: {
     width: deviceWidth - 50,
@@ -28,7 +29,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  button: {
+    width: deviceWidth - 50,
+    height: 50,
+    borderRadius: 10,
+    elevation: 6,
+    backgroundColor: '#55599e',
+    shadowOffset: { width: 4, height: 4 },
+    shadowColor: 'black',
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 10,
+    justifyContent: 'center'
+  }
 });
 
 
-export default styles
+export default styles;
