@@ -1,4 +1,6 @@
+import requests
 import datetime
+import re
 from flask import Blueprint, jsonify, request, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import models, db
@@ -12,16 +14,29 @@ auth_blueprint = Blueprint("auth", __name__);
 def signup():
     data = request.get_json()
     try:
-        db.session.add(models.User(
-            id=str(uuid.uuid4()),
-            name=data["name"],
-            email=data["email"],
-            password=generate_password_hash(data["password"], method="sha256"),
-            phone=data["phone"],
-            address=data["address"]
-        ))
-        db.session.commit()
-        return jsonify({"success": "at creation of account"})
+        user_id = str(uuid.uuid4())
+        res = requests.post('https://api.razorpay.com/v1/contacts',
+                auth=(current_app.config["KEY_ID"], current_app.config["KEY_SECRET"]),
+                json={
+                    "name": data["name"],
+                    "email": data["email"],
+                    "contact": int(data["phone"]),
+                    "reference_id": user_id,
+                    "type": "customer",
+                })
+        if res.ok:
+            db.session.add(models.User(
+                id=user_id,
+                name=data["name"],
+                email=data["email"],
+                password=generate_password_hash(data["password"], method="sha256"),
+                phone=data["phone"],
+                address=data["address"]
+            ))
+            db.session.commit()
+            return jsonify({"success": "at creation of account"})
+        else:
+            return jsonify({"error": res.json()}), res.status_code
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
@@ -30,17 +45,41 @@ def signup():
 def signupMerchant():
     data = request.get_json()
     try:
-        db.session.add(models.Merchant(
-            id=str(uuid.uuid4()),
-            name=data["name"],
-            email=data["email"],
-            password=generate_password_hash(data["password"], method="sha256"),
-            bname=data["bname"],
-            phone=data["phone"],
-            address=data["address"]
-        ))
-        db.session.commit()
-        return jsonify({"success": "at creation of account"})
+        merch_id = str(uuid.uuid4())
+        res = requests.post('https://api.razorpay.com/v1/contacts',
+                auth=(current_app.config["KEY_ID"], current_app.config["KEY_SECRET"]),
+                json={
+                    "name": data["name"],
+                    "email": data["email"],
+                    "contact": int(data["phone"]),
+                    "reference_id": merch_id,
+                    "type": "vendor",
+                })
+        res_card = requests.post('https://api.razorpay.com/v1/fund_accounts',
+                auth=(current_app.config["KEY_ID"], current_app.config["KEY_SECRET"]),
+                json={
+                    "contact_id": res.json()["id"],
+                    "account_type": "vpa",
+                    "vpa": {
+                        "address": data["vpa"]
+                    }
+                }
+                )
+        if res_card.ok and res.ok:
+            db.session.add(models.Merchant(
+                id=merch_id,
+                name=data["name"],
+                email=data["email"],
+                password=generate_password_hash(data["password"], method="sha256"),
+                bname=data["bname"],
+                phone=data["phone"],
+                address=data["address"],
+                vpa=data["vpa"],
+                razorpay_id=res.json()["id"],
+                fund_id = res_card.json()["id"]
+            ))
+            db.session.commit()
+            return jsonify({"razorpay": res.json(), "funds": res_card.json()}), res.status_code
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 

@@ -69,3 +69,17 @@ def pay_up(user):
             return jsonify({"error": "not your ledger"}), 401
     except Exception as e:
         return jsonify({"error": str(e)}), 401
+
+@txn_blueprint.route("/verify", methods=["POST"])
+@auth.authorize_user
+def verify(user):
+    #send the backend order_id
+    #send order_id
+    #NOT TESTED
+    data = request.get_json()
+    try:
+        ledger_id = data["ledger_id"]
+        result = models.Ledger.query.filter_by(id=ledger_id).first()
+        if result:
+            client = razorpay.Client(auth=(current_app.config["KEY_ID"], current_app.config["KEY_SECRET"]))
+            return jsonify(client.order.payments(data["order_id"]))
