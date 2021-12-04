@@ -5,9 +5,11 @@ import styles from './style';
 import { TouchableHighlight } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import axios from 'axios';
 
 const icon_size = 50;
-const TransactionRecords = ({ navigation }) => {
+const TransactionRecords = ({ navigation, email }) => {
+  console.log(email);
   return (
     <View style={{ flex: 1 }}>
       <FlatList

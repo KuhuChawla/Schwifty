@@ -91,6 +91,33 @@ def check(user, ledgerId):
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
+@txn_blueprint.route("/checkLedger/<string:customerId>", methods=["GET"])
+@auth.authorize_user
+def checkLedger(user, customerId):
+    #user checks for pending transactions
+    try:
+        result = models.Ledger.query.filter_by(user_two=customerId, confirm=False).all()
+        if result:
+            return jsonify({"status": "pending", "ledger_id": result[0].id, "merchant_id": result[0].user_one, "amount": result[0].balance}), 200
+        else:
+            return jsonify({"status": "none"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
+@txn_blueprint.route("/allTransactions/<string:customerId>", methods=["GET"])
+@auth.authorize_user
+def allTransactions(user, customerId):
+    #user fetch all transactions
+    try:
+        result = models.Ledger.query.filter_by(user_two=customerId).all()
+        if result:
+            return jsonify({"status": "success", "transactions": result}), 200
+        else:
+            return jsonify({"status": "none"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+        
+
 @txn_blueprint.route("/verify", methods=["POST"])
 @auth.authorize_user
 def verify(user):

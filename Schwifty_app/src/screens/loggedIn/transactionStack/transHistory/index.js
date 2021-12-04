@@ -4,8 +4,10 @@ import TransactionRecords from "../../../../components/transaction/Flatlist/flat
 import Charts from "../../../../components/transaction/graphs/chart";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from "@react-navigation/native";
 
-const TransHistory = ({ navigation }) => {
+const TransHistory = ({ email }) => {
+  const navigation = useNavigation();
   const deviceHeight = Math.round(Dimensions.get('window').height);
   return (
     <SafeAreaView style={styles.container}>
@@ -28,7 +30,7 @@ const TransHistory = ({ navigation }) => {
         </Text>
       </View>
       <Charts />
-      <TransactionRecords navigation={navigation} />
+      <TransactionRecords navigation={navigation} email={email}/>
     </SafeAreaView>
   )
 }

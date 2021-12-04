@@ -7,10 +7,10 @@ import HorizontalList from '../HorizontalList/HorizontalList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Dashboard = ({ navigation }) => {
+const Dashboard = ({ navigation, isMerchant }) => {
 
     const details = [
-        { name: 'Luisi', key: '1' },
+        { name: 'Luisi', key: '1',},
         { name: 'Vanesa', key: '2' },
         { name: 'Lark', key: '3' },
         { name: 'Tony', key: '4' },
@@ -27,13 +27,19 @@ const Dashboard = ({ navigation }) => {
                     <Text style={styles.card1SeeDetails}>See Details</Text>
                 </View>
             </Card>
-            <TouchableOpacity onPress={() => navigation.navigate('Add Payment')}>
+            {isMerchant ?<TouchableOpacity onPress={() => navigation.navigate('Add Payment')}>
                 <Card>
                     <View style={styles.card3}>
                         <Text style={styles.card3Content}>Add Payment</Text>
                     </View>
                 </Card>
-            </TouchableOpacity>
+            </TouchableOpacity>:<TouchableOpacity onPress={() => navigation.navigate('User Acceptance')}>
+                <Card>
+                    <View style={styles.card3}>
+                        <Text style={styles.card3Content}>Check Pending</Text>
+                    </View>
+                </Card>
+            </TouchableOpacity>}
             <TouchableOpacity onPress={() => navigation.navigate('Schwifty Score')}>
                 <Card>
                     <View style={styles.card3}>

@@ -64,7 +64,9 @@ export default class LoggedIn extends Component {
                 jwt={this.props.jwt} email={this.props.email}
                 isMerchant={this.props.isMerchant} />}
             </Tab.Screen>
-            <Tab.Screen name="Transactions" component={TransactionStackScreen} />
+            <Tab.Screen name="Transactions" >
+              {() => <TransactionStackScreen email={this.props.email}/>}
+            </Tab.Screen>
             <Tab.Screen name="Notifications" component={NotificationStackScreen} />
           </Tab.Navigator>
         </NavigationContainer>

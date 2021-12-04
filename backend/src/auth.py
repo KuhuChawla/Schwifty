@@ -139,7 +139,16 @@ def user(email):
 def merchant(email):
     try:
         u = models.Merchant.query.filter_by(email=email).first()
-        return jsonify({"name": u.name, "email": u.email, "phone": u.phone, "address": u.address, "id": u.id, "bname": u.bname})
+        return jsonify({"name": u.name, "email": u.email, "phone": u.phone, "address": u.address, "id": u.id, "bname": u.bname}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
+#get merchant from id
+@auth_blueprint.route("/merchantFromID/<string:id>", methods=["GET"])
+def merchantFromID(id):
+    try:
+        u = models.Merchant.query.filter_by(id=id).first()
+        return jsonify({"name": u.name, "email": u.email, "phone": u.phone, "address": u.address, "id": u.id, "bname": u.bname}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 

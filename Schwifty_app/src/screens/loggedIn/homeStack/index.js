@@ -4,14 +4,17 @@ import HomeScreen from "../../../components/home";
 import Profile from "../../../components/profilePage/profile";
 import SchwiftyScorePage from "../../../components/schwiftyScore";
 import PaymentTransfer from "../../../components/paymentTransfer/PaymentTransfer";
+import UserAcceptance from "../../../components/userAcceptance";
 
 const HomeStack = createNativeStackNavigator();
 
 const HomeStackScreen = ({ deleteJWT, jwt, email, isMerchant }) => {
-    console.log("HomeStackScreen", isMerchant);
+    console.log("HomeStackScreen", typeof(isMerchant));
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+            <HomeStack.Screen name="HomeScreen" options={{ headerShown: false }}>
+                {() => <HomeScreen isMerchant={isMerchant}/>}
+            </HomeStack.Screen>
             <HomeStack.Screen name="Profile" options={{
                 headerStyle: {
                     backgroundColor: '#fff',
@@ -48,6 +51,19 @@ const HomeStackScreen = ({ deleteJWT, jwt, email, isMerchant }) => {
                   },
             }}>
                 {() => <PaymentTransfer jwt={jwt} email={email}/>}
+            </HomeStack.Screen>
+            <HomeStack.Screen name="User Acceptance" options={{
+                // headerStyle: {
+                //     backgroundColor: '#2a2b4d',
+                //     elevation: 0,
+                //     shadowOpacity: 0
+                // },
+                headerTintColor: '#2a2b4d',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                  },
+            }}>
+                {() => <UserAcceptance jwt={jwt} email={email}/>}
             </HomeStack.Screen>
         </HomeStack.Navigator>
     )
