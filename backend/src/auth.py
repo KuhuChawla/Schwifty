@@ -12,6 +12,7 @@ auth_blueprint = Blueprint("auth", __name__);
 
 @auth_blueprint.route("/register", methods=["POST"])
 def signup():
+    print(current_app.config["KEY_SECRET"])
     data = request.get_json()
     try:
         user_id = str(uuid.uuid4())
@@ -38,6 +39,7 @@ def signup():
         else:
             return jsonify({"error": res.json()}), res.status_code
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 401
 
 
@@ -123,7 +125,7 @@ def loginMerchant():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-
+#get User details
 @auth_blueprint.route("/user/<string:email>", methods=["GET"])
 def user(email):
     try:
@@ -132,6 +134,7 @@ def user(email):
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
+#get Merchant details
 @auth_blueprint.route("/merchant/<string:email>", methods=["GET"])
 def merchant(email):
     try:
@@ -141,7 +144,7 @@ def merchant(email):
         return jsonify({"error": str(e)}), 401
 
 #Update user
-@auth_blueprint.route("/userUpdate/<string:email>", methods=["POST"])
+@auth_blueprint.route("/userUpdate/<string:email>", methods=["PUT"])
 def updateUser(email):
     data = request.get_json()
     try:

@@ -28,7 +28,7 @@ const Profile = ({ deleteJWT, jwt }) => {
 	}
 
 	const editProfile = () => {
-		axios.post("http://10.0.2.2:5000/userUpdate/" + jwt.email, {
+		axios.put("http://10.0.2.2:5000/userUpdate/" + jwt.email, {
 			name: name,
 			address: address
 		}).then((response) => {
@@ -67,7 +67,7 @@ const Profile = ({ deleteJWT, jwt }) => {
 						<TextInput style={{ color: '#fff', fontSize: 16 }} value={address} editable={isEdit} onChange={(address) => setAddress(address)} />
 					</ProfileCard>
 					{isEdit ? <View style={styles.buttonRow}>
-						<TouchableHighlight onPress={() => console.log(name, address)}>
+						<TouchableHighlight onPress={() => editProfile()}>
 							<View style={styles.button2}>
 								<Text style={{ color: 'white', fontSize: 20, textAlign: 'center', fontWeight: 'bold', marginHorizontal: 18, marginVertical: 10 }}>Save</Text>
 							</View>
