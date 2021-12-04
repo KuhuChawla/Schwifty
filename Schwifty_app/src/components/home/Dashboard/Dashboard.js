@@ -10,12 +10,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Dashboard = ({ navigation, isMerchant }) => {
 
     const details = [
-        { name: 'Luisi', key: '1',},
-        { name: 'Vanesa', key: '2' },
-        { name: 'Lark', key: '3' },
-        { name: 'Tony', key: '4' },
-        { name: 'Gabriel', key: '5' },
-        { name: 'Vice', key: '6' }
+        { name: 'Luisi', key: '100',},
+        { name: 'Vanesa', key: '150' },
+        { name: 'Lark', key: '332' },
+        { name: 'Tony', key: '400' },
+        { name: 'Gabriel', key: '505' },
+        { name: 'Vice', key: '678' }
     ]
 
     return (
@@ -49,7 +49,7 @@ const Dashboard = ({ navigation, isMerchant }) => {
             </TouchableOpacity>
             <View>
                 <Text style={styles.cashAndCheck}>
-                    Cash &#38; Checking
+                    Recent Transactions
                 </Text>
             </View>
             <FlatList

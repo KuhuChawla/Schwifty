@@ -4,6 +4,7 @@ from . import models
 from flask import Blueprint, jsonify, request, current_app
 import uuid
 import razorpay
+import requests
 
 txn_blueprint = Blueprint("transaction", __name__)
 
@@ -104,12 +105,12 @@ def checkLedger(user, customerId):
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-@txn_blueprint.route("/allTransactions/<string:customerId>", methods=["GET"])
+@txn_blueprint.route("/allPendingTransactions/<string:customerId>", methods=["GET"])
 @auth.authorize_user
 def allTransactions(user, customerId):
     #user fetch all transactions
     try:
-        result = models.Ledger.query.filter_by(user_two=customerId).all()
+        result = models.Ledger.query.filter_by(user_two=customerId, confirm=True).all()
         if result:
             return jsonify({"status": "success", "transactions": result}), 200
         else:
@@ -133,3 +134,26 @@ def verify(user):
             return jsonify(client.order.payments(data["order_id"]))
     finally:
         return jsonify({"error": "not your ledger"}), 401
+
+
+@txn_blueprint.route("/payNow", methods=["POST"])
+@auth.authorize_user
+def payNow(user):
+    #razorpay payment gateway
+    data = request.get_json()
+    try:
+        res = requests.post('https://api.razorpay.com/v1/payment_links',
+                auth=(current_app.config["KEY_ID"], current_app.config["KEY_SECRET"]),
+                json={
+                    "amount": int(data["amount"])*100,
+                    "currency": "INR",
+                    "customer": {
+                        "contact": user.phone,
+                        "email": user.email,
+                        "name": user.name
+                    },
+                }
+                )
+        return jsonify(res.json())
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401

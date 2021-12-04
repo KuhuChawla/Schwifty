@@ -9,7 +9,7 @@ const HorizontalList = (props) => {
         <View style={styles.horizontalCard}>
             <View style={styles.horizontalCardContent}>
                 <Text style={styles.horizontalListName}> {item.name} </Text>
-                <Text style={styles.horizontalListMoney}> {item.key} </Text>
+                <Text style={styles.horizontalListMoney}>₹ {item.key} </Text>
             </View>
         </View>
     );
