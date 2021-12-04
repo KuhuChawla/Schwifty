@@ -17,13 +17,13 @@ export default class LoggedIn extends Component {
     super(props);
     this.state = {
       loading: true,
-      email: '',
       error: '',
       user_id: '',
     }
   }
 
   render() {
+    console.log(this.props.isMerchant);
     return (
       <SafeAreaView style={styles.AndroidSafeArea}>
         {/* <View style={styles.container}>
@@ -57,11 +57,16 @@ export default class LoggedIn extends Component {
             // inactiveTintColor: 'pink',
             activeBackgroundColor: '#fff',
             inactiveBackgroundColor: '#fff',
-         }}>
+          }}>
             <Tab.Screen name="Home">
-              {() => <HomeStackScreen deleteJWT={this.props.deleteJWT} jwt={this.props.jwt}/>}
+              {() => <HomeStackScreen
+                deleteJWT={this.props.deleteJWT}
+                jwt={this.props.jwt} email={this.props.email}
+                isMerchant={this.props.isMerchant} />}
             </Tab.Screen>
-            <Tab.Screen name="Transactions" component={TransactionStackScreen} />
+            <Tab.Screen name="Transactions" >
+              {() => <TransactionStackScreen email={this.props.email}/>}
+            </Tab.Screen>
             <Tab.Screen name="Notifications" component={NotificationStackScreen} />
           </Tab.Navigator>
         </NavigationContainer>

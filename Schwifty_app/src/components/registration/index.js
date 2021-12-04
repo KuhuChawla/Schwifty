@@ -27,6 +27,7 @@ class Registration extends Component {
 			password: "",
 			password_confirmation: "",
 			phone: "",
+			upi: "",
 			bname: "",
 			address: "",
 			error: "",
@@ -98,6 +99,7 @@ class Registration extends Component {
 			password,
 			password_confirmation,
 			bname,
+			upi,
 			phone,
 			address,
 			error,
@@ -118,11 +120,12 @@ class Registration extends Component {
 					phone: phone,
 					bname: bname,
 					address: address,
+					vpa: upi,
 				})
 				.then((response) => {
 					// handle jwt response
 					console.log(response);
-					if (response.data.success) {
+					if (response.status < 400) {
 						this.setState({
 							success: true,
 						});
@@ -150,6 +153,7 @@ class Registration extends Component {
 			password,
 			password_confirmation,
 			bname,
+			upi,
 			phone,
 			address,
 			success,
@@ -240,6 +244,18 @@ class Registration extends Component {
 							editable={!this.state.success}
 						/>
 					</View>
+
+					{this.state.isMerchant && (
+						<View style={styles.section}>
+							<Input
+								placeholder="UPI"
+								label="UPI"
+								value={upi}
+								onChangeText={(upi) => this.setState({ upi })}
+								editable={!this.state.success}
+							/>
+						</View>)
+					}
 
 					<View style={styles.section}>
 						<Input

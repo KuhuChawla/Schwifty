@@ -7,15 +7,15 @@ import HorizontalList from '../HorizontalList/HorizontalList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Dashboard = ({ navigation }) => {
+const Dashboard = ({ navigation, isMerchant }) => {
 
     const details = [
-        { name: 'Luisi', key: '1' },
-        { name: 'Vanesa', key: '2' },
-        { name: 'Lark', key: '3' },
-        { name: 'Tony', key: '4' },
-        { name: 'Gabriel', key: '5' },
-        { name: 'Vice', key: '6' }
+        { name: 'Luisi', key: '100',},
+        { name: 'Vanesa', key: '150' },
+        { name: 'Lark', key: '332' },
+        { name: 'Tony', key: '400' },
+        { name: 'Gabriel', key: '505' },
+        { name: 'Vice', key: '678' }
     ]
 
     return (
@@ -27,22 +27,19 @@ const Dashboard = ({ navigation }) => {
                     <Text style={styles.card1SeeDetails}>See Details</Text>
                 </View>
             </Card>
-            <Card>
-                <View style={styles.card2}>
-                    <View style={styles.threeIconsSingleContainer}>
-                        <Ionicons name="menu" size={33} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>History</Text>
+            {isMerchant ?<TouchableOpacity onPress={() => navigation.navigate('Add Payment')}>
+                <Card>
+                    <View style={styles.card3}>
+                        <Text style={styles.card3Content}>Add Payment</Text>
                     </View>
-                    <View style={styles.threeIconsSingleContainer}>
-                        <Ionicons name="arrow-redo-circle-outline" size={34} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>Pay</Text>
+                </Card>
+            </TouchableOpacity>:<TouchableOpacity onPress={() => navigation.navigate('User Acceptance')}>
+                <Card>
+                    <View style={styles.card3}>
+                        <Text style={styles.card3Content}>Check Pending</Text>
                     </View>
-                    <View style={styles.threeIconsSingleContainer}>
-                    <Ionicons name="menu" size={33} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>Top Up</Text>
-                    </View>
-                </View>
-            </Card>
+                </Card>
+            </TouchableOpacity>}
             <TouchableOpacity onPress={() => navigation.navigate('Schwifty Score')}>
                 <Card>
                     <View style={styles.card3}>
@@ -52,7 +49,7 @@ const Dashboard = ({ navigation }) => {
             </TouchableOpacity>
             <View>
                 <Text style={styles.cashAndCheck}>
-                    Cash &#38; Checking
+                    Recent Transactions
                 </Text>
             </View>
             <FlatList

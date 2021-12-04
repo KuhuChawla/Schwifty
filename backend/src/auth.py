@@ -12,6 +12,7 @@ auth_blueprint = Blueprint("auth", __name__);
 
 @auth_blueprint.route("/register", methods=["POST"])
 def signup():
+    print(current_app.config["KEY_SECRET"])
     data = request.get_json()
     try:
         user_id = str(uuid.uuid4())
@@ -38,6 +39,7 @@ def signup():
         else:
             return jsonify({"error": res.json()}), res.status_code
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 401
 
 
@@ -95,7 +97,7 @@ def login():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])})
+                return jsonify({"token": token, "email": u.email, "isMerchant": False}), 200
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:
@@ -115,7 +117,7 @@ def loginMerchant():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])})
+                return jsonify({"token": token, "email": u.email, "isMerchant": True}), 200
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:
@@ -123,7 +125,7 @@ def loginMerchant():
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
-
+#get User details
 @auth_blueprint.route("/user/<string:email>", methods=["GET"])
 def user(email):
     try:
@@ -132,16 +134,26 @@ def user(email):
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
+#get Merchant details
 @auth_blueprint.route("/merchant/<string:email>", methods=["GET"])
 def merchant(email):
     try:
         u = models.Merchant.query.filter_by(email=email).first()
-        return jsonify({"name": u.name, "email": u.email, "phone": u.phone, "address": u.address, "id": u.id, "bname": u.bname})
+        return jsonify({"name": u.name, "email": u.email, "phone": u.phone, "address": u.address, "id": u.id, "bname": u.bname}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
+#get merchant from id
+@auth_blueprint.route("/merchantFromID/<string:id>", methods=["GET"])
+def merchantFromID(id):
+    try:
+        u = models.Merchant.query.filter_by(id=id).first()
+        return jsonify({"name": u.name, "email": u.email, "phone": u.phone, "address": u.address, "id": u.id, "bname": u.bname}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
 #Update user
-@auth_blueprint.route("/userUpdate/<string:email>", methods=["POST"])
+@auth_blueprint.route("/userUpdate/<string:email>", methods=["PUT"])
 def updateUser(email):
     data = request.get_json()
     try:

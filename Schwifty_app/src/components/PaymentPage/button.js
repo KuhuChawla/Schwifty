@@ -9,10 +9,10 @@ const AppButton = ({ onPress, title }) => (
   </TouchableOpacity>
 );
 
-const AppB = () => {
+const AppB = ({ onPress, title }) => {
   return (
     <View style={styles.screenContainer}>
-      <AppButton title="PAY NOW" size="sm" backgroundColor='#2a2b4d' />
+      <AppButton title={title} size="sm" backgroundColor='#2a2b4d' onPress={onPress}/>
     </View>
   );
 };
