@@ -97,7 +97,7 @@ def login():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])})
+                return jsonify({"token": token, "email": u.email, "isMerchant": False}), 200
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:
@@ -117,7 +117,7 @@ def loginMerchant():
                         current_app.config["SECRET_KEY"],
                         "HS256"
                         )
-                return jsonify({"token": jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])})
+                return jsonify({"token": token, "email": u.email, "isMerchant": True}), 200
             else:
                 return jsonify({"error": "wrong password"}), 401
         else:

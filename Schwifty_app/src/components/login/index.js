@@ -48,7 +48,9 @@ class Login extends Component {
     })
       .then((response) => {
         deviceStorage.saveKey("id_token", response.data.token);
-        this.props.newJWT(response.data.token);
+        deviceStorage.saveKey("email", response.data.email);
+        deviceStorage.saveKey("isMerchant", "false");
+        this.props.newJWT(response.data.token, response.data.email, "false");
       })
       .catch((error) => {
         console.log("error!!",error);
@@ -68,7 +70,9 @@ class Login extends Component {
     })
       .then((response) => {
         deviceStorage.saveKey("id_token", response.data.token);
-        this.props.newJWT(response.data.token);
+        deviceStorage.saveKey("email", response.data.email);
+        deviceStorage.saveKey("isMerchant", "true");
+        this.props.newJWT(response.data.token, response.data.email, "true");
       })
       .catch((error) => {
         console.log("error!!",error);

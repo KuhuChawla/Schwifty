@@ -13,9 +13,13 @@ const deviceStorage = {
   async loadJWT() {
     try {
       const value = await AsyncStorage.getItem('id_token');
+      const email = await AsyncStorage.getItem('email');
+      const isMerchant = await AsyncStorage.getItem('isMerchant');
       if (value !== null) {
         this.setState({
           jwt: value,
+          email: email,
+          isMerchant: isMerchant,
           loading: false
         });
       } else {
@@ -34,7 +38,9 @@ const deviceStorage = {
         .then(
           () => {
             this.setState({
-              jwt: ''
+              jwt: '',
+              email: '',
+              isMerchant: false,
             })
           }
         );

@@ -27,22 +27,13 @@ const Dashboard = ({ navigation }) => {
                     <Text style={styles.card1SeeDetails}>See Details</Text>
                 </View>
             </Card>
-            <Card>
-                <View style={styles.card2}>
-                    <View style={styles.threeIconsSingleContainer}>
-                        <Ionicons name="menu" size={33} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>History</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Add Payment')}>
+                <Card>
+                    <View style={styles.card3}>
+                        <Text style={styles.card3Content}>Add Payment</Text>
                     </View>
-                    <View style={styles.threeIconsSingleContainer}>
-                        <Ionicons name="arrow-redo-circle-outline" size={34} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>Pay</Text>
-                    </View>
-                    <View style={styles.threeIconsSingleContainer}>
-                    <Ionicons name="menu" size={33} color="white" style={styles.threeIcons} />
-                        <Text style={styles.threeIconsText}>Top Up</Text>
-                    </View>
-                </View>
-            </Card>
+                </Card>
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Schwifty Score')}>
                 <Card>
                     <View style={styles.card3}>

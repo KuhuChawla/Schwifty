@@ -13,6 +13,8 @@ def new_lend(user):
     # merchant tells us that he wants to lend X rupees
     # merchant also tells us whom he wants to lend to
     data = request.get_json()
+    print(data)
+    print(request)
     try:
         customer = data["user"]
         amount = data["amount"]
@@ -28,6 +30,7 @@ def new_lend(user):
         db.session.commit()
         return jsonify({"status": "success", "ledger_id": ledger_id})
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 401
 
 @txn_blueprint.route("/borrow", methods=["POST"])
@@ -40,9 +43,14 @@ def new_borrow(user):
         confirm = data["confirm"]
         result = models.Ledger.query.filter_by(id=ledger_id).first()
         if result.user_two == user.id:
-            result.confirm = confirm
-            db.session.commit()
-            return jsonify({"status": "success"})
+            if confirm:
+                result.confirm = confirm
+                db.session.commit()
+                return jsonify({"status": "success"})
+            else:
+                db.session.delete(result)
+                db.session.commit()
+                return jsonify({"status": "declined"})
         else:
             return jsonify({"error": "not your ledger"}), 401
     except Exception as e:
@@ -67,6 +75,19 @@ def pay_up(user):
             return jsonify({"order_id": payment["id"], "amount": payment["amount"]})
         else:
             return jsonify({"error": "not your ledger"}), 401
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
+@txn_blueprint.route("/check/<string:ledgerId>", methods=["GET"])
+@auth.authorize_merchant
+def check(user, ledgerId):
+    # merchant checks the status of the transaction
+    try:
+        result = models.Ledger.query.filter_by(id=ledgerId).first()
+        if result.confirm == True:
+            return jsonify({"status": "success"})
+        else:
+            return jsonify({"status": "pending"})
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 

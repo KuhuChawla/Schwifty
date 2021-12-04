@@ -4968,6 +4968,11 @@ react-native@0.64.3:
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
 
+react-polling@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-polling/-/react-polling-1.0.9.tgz#f1101a1d88bd90a647ace969b6731ab19326029b"
+  integrity sha512-fXRQMbpfp5B8tOjq/JzqsP0V8DcgDbb/piwlnTMHJUgepgyyVPNGqtT0TmaJTIsyS+ujkNWOyjGtjewMoNmdYg==
+
 react-refresh@^0.4.0:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"

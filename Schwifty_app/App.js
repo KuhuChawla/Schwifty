@@ -64,6 +64,8 @@ export default class App extends React.Component {
     this.state = {
       showRealApp: false,
       jwt: '',
+      email: '',
+      isMerchant: false,
       loading: true
     };
 
@@ -120,9 +122,11 @@ export default class App extends React.Component {
     this.setState({ showRealApp: true });
   }
 
-  newJWT(jwt) {
+  newJWT(jwt, email, isMerchant) {
     this.setState({
-      jwt: jwt
+      jwt: jwt,
+      email: email,
+      isMerchant: isMerchant === 'true' ? true : false,
     });
   }
 
@@ -138,7 +142,7 @@ export default class App extends React.Component {
         );
       } else if (this.state.jwt) {
         return (
-          <LoggedIn jwt={this.state.jwt} deleteJWT={this.deleteJWT} />
+          <LoggedIn jwt={this.state.jwt} deleteJWT={this.deleteJWT} email={this.state.email} isMerchant={this.state.isMerchant}/>
         );
       };
     } else {

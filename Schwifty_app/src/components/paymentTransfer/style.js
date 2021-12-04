@@ -3,7 +3,8 @@ import { StyleSheet, Dimensions } from "react-native";
 export default StyleSheet.create({
     container: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        backgroundColor: '#fff',
     },
     moneyTransferTopbar: {
         height: '12%',
@@ -14,7 +15,7 @@ export default StyleSheet.create({
     moneyTransferTopbarContent: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#2a2b4d',
     },
     inputFieldsContainer: {
 
@@ -35,33 +36,33 @@ export default StyleSheet.create({
     payee: {
         width: 290,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: '#2a2b4d',
         padding: 8,
         margin: 10,
         borderRadius: 10,
         marginLeft: 'auto',
         fontSize: 18,
-        color: 'white'
+        color: '#2a2b4d'
     },
     payingFor: {
         width: 290,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: '#2a2b4d',
         padding: 8,
         margin: 10,
         borderRadius: 10,
         marginLeft: 'auto',
         fontSize: 18,
-        color: 'white'
+        color: '#2a2b4d'
     },
     amount: {
         width: 150,
         borderBottomWidth: 1,
-        borderColor: 'white',
+        borderColor: '#2a2b4d',
         padding: 8,
         margin: 10,
         borderRadius: 10,
         fontSize: 35,
-        color: 'white'
+        color: '#2a2b4d'
     }
 })

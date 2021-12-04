@@ -6,7 +6,7 @@ import styles from "./style";
 import Loading from "../common/loading";
 
 const icon_size = 120;
-const Profile = ({ deleteJWT, jwt }) => {
+const Profile = ({ deleteJWT, jwt, email, isMerchant }) => {
 	const deviceWidth = Math.round(Dimensions.get('window').width);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isEdit, setIsEdit] = useState(false);
@@ -15,8 +15,11 @@ const Profile = ({ deleteJWT, jwt }) => {
 	const [address, setAddress] = useState(null);
 
 	const getData = async () => {
+		console.log(isMerchant);
+		const url = isMerchant === "true" ? "http://10.0.2.2:5000/merchant/":"http://10.0.2.2:5000/user/";
+		console.log(url);
 		try {
-			const response = await axios.get("http://10.0.2.2:5000/user/" + jwt.email);
+			const response = await axios.get(url + email);
 			setData(response.data);
 			setName(String(response.data.name));
 			setAddress(String(response.data.address));
@@ -28,7 +31,7 @@ const Profile = ({ deleteJWT, jwt }) => {
 	}
 
 	const editProfile = () => {
-		axios.put("http://10.0.2.2:5000/userUpdate/" + jwt.email, {
+		axios.put("http://10.0.2.2:5000/userUpdate/" + email, {
 			name: name,
 			address: address
 		}).then((response) => {
