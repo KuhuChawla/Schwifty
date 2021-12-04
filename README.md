@@ -17,6 +17,23 @@
   
 - **Youtube Video**: 
   
+## Instructions To run the backend: 
+```md
+cd backend
+conda create -n schiwiftybackend python=3.7
+conda activate schiwiftybackend
+pip install -r requirement.txt
+./run.sh
+```
+
+## Instructions to the run the app:
+Make sure that npm, expo and react native are installed on your machine.
+```md
+cd schwifty_app
+npm install
+npm start
+
+```
 ## Gallery
 
 
