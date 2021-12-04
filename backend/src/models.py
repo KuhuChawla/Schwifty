@@ -13,6 +13,7 @@ class User(db.Model):
     phone = db.Column(db.String(10), default="0000000000", unique=True)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     ban = db.Column(db.Boolean, default=False)
+    razorpay_id = db.Column(db.String(37), default="")
 
 class Merchant(db.Model):
     id = db.Column(db.String(37), primary_key=True)
@@ -25,6 +26,9 @@ class Merchant(db.Model):
     phone = db.Column(db.String(10), default="0000000000", unique=True)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     ban = db.Column(db.Boolean, default=False)
+    vpa = db.Column(db.String(64))
+    fund_id = db.Column(db.String(64))
+    razorpay_id = db.Column(db.String(37), default="")
 
 class UOME(db.Model):
     id = db.Column(db.String(37), primary_key=True)
@@ -51,3 +55,4 @@ class Transactions(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     isPaid = db.Column(db.Boolean, default=False)
     details = db.Column(db.String(300), default="")
+    razorpay_id = db.Column(db.String(37), default="")
