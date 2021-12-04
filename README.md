@@ -41,7 +41,7 @@ App         |  Tutorial | Credit/Profile Page
 :-------------------------:|:-------------------------: |:-------------------------:
 ![](assets/Screenshot_2021-12-03_at_6.46.56_PM.png)  |  ![](assets/ezgif-1-48a424f89556.gif) | ![](assets/unknown.png)
 **Transaction History**       |  **Payment Page** | **Notification Page**
-![](assets/unknown(2).png) | ![](assets/Screenshot_2021-12-03_at_6.55.16_PM.png) | ![](assets/unknown(1).png) 
+![](assets/unknown(2).png) | ![](assets/Pay.png) | ![](assets/unknown(1).png) 
 
 ## References:
 - [CIBIL SCORE](https://www.cibil.com/freecibilscore)
