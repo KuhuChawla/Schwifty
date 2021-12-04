@@ -101,6 +101,19 @@ def merchant(email):
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
+#Update user
+@auth_blueprint.route("/userUpdate/<string:email>", methods=["POST"])
+def updateUser(email):
+    data = request.get_json()
+    try:
+        u = models.User.query.filter_by(email=email).first()
+        u.name = data["name"]
+        u.address = data["address"]
+        db.session.commit()
+        return jsonify({"success": "user updated"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401
+
 def authorize_user(f):
     @wraps(f)
     def find_user(*args, **kwargs):
